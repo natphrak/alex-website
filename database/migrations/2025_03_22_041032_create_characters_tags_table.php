@@ -10,8 +10,12 @@ class CreateCharactersTagsTable extends Migration
     {
         Schema::create('characters_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('character_id')->constrained('characters')->onDelete('cascade');
-            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
+            $table->unsignedBigInteger('character_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->timestamps();
+
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

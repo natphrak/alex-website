@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // Unique and not nullable
-            $table->timestamps();
+            $table->string('name');
+            $table->text('description');
+            $table->string('image');
+            $table->timestamps(); 
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('characters');
     }
 };

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('art_tags', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('art_id')->constrained('images')->onDelete('cascade'); // Assuming 'images' is the table for art
-            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
+            $table->string('name')->unique();
+            $table->timestamps();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('art_tags');
+        Schema::dropIfExists('tags');
     }
 };
